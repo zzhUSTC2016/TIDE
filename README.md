@@ -14,11 +14,17 @@ In this paper, we propose to leverage temporal information as the two factors ex
 
 # Dataset
 
+We used [Amazon-CDs and Vinyl](https://jmcauley.ucsd.edu/data/amazon/), [Douban-movies](https://github.com/DeepGraphLearning/RecommenderSystems/blob/master/socialRec/README.md#douban-data), and Ciao. You can download the dataset into /data and rename the rating file as rating.csv. The code will process the data automatically when you run main.py
 
+note that file /lgcn_graph/Douban-movie/lgcn_graph_index.zip needs to be unzipped
 
 # An example to run TIDE
 
+```
+python main.py
+```
 
+All parameters and choices can be found in config.py
 
 # Results
 
