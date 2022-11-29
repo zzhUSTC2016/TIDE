@@ -28,3 +28,4 @@ All parameters and choices can be found in config.py
 
 # Results
 
+## Please feel free to contact me if you have any questions by raising issues or email(zzh1998@mail.ustc.edu.cn).
