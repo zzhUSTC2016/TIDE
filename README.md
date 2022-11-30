@@ -1,6 +1,6 @@
 # TIDE
 
-This is the pytorch and C++ implementation of our TKDE 2023 paper:
+This is the pytorch and C++ implementation of our TKDE paper:
 
 > Zhao Z, Chen J, Zhou S, et al. Popularity bias is not always evil: Disentangling benign and harmful bias for recommendation[J]. IEEE Transactions on Knowledge and Data Engineering, 2022. [Paper link](https://ieeexplore.ieee.org/document/9935285/)
 
