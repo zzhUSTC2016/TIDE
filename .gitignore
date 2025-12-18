@@ -1,0 +1,5 @@
+# 忽略 data 下所有子文件夹的内容
+data/*/*
+
+# 但是保留各子文件夹下的 readme.md（不区分大小写可以写成 [Rr][Ee][Aa][Dd][Mm][Ee].md）
+!data/*/readme.md
