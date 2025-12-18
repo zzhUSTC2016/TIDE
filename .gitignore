@@ -1,3 +1,9 @@
-data/*/*
+__pycache__/
 
+cppcode/.*
+cppcode/*.so
+
+data/*/*
 !data/*/readme.md
+
+log/

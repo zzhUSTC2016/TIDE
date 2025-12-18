@@ -1,7 +1,7 @@
 import time
 import os
 
-import util
+import utils
 
 
 class DefaultConfig(object):
@@ -9,7 +9,7 @@ class DefaultConfig(object):
     定义所有参数，包括运行那个数据集，选择哪个方法，所需文件的路径，每个方法对应的参数
     """
     def __init__(self):
-        self.backbone = 'LightGCN'  # 'LightGCN'
+        self.backbone = 'MF'  # 'LightGCN'
         # 'Amazon-CDs_and_Vinyl' 'Amazon-Music' 'Douban-movie', 'Ciao'
         self.dataset = 'Ciao'
         # ['base','IPS','DICE','PD','PDA','TIDE', TIDE-noc, TIDE-noq, 'TIDE-e','TIDE-int']
@@ -20,8 +20,9 @@ class DefaultConfig(object):
         self.data_process = False
 
 
-        self.model_path_to_load = 'model/' + self.dataset + '/' + \
+        self.model_path_to_load = 'log/' + self.dataset + '/' + \
             '2022-03-17 20.41.18_MF_TIDE' + '.pth'
+        self.make_dir('log/' + self.dataset)
         self.get_file_path()
         self.print_head_line()
         self.get_para()
@@ -35,7 +36,7 @@ class DefaultConfig(object):
         str_time = time.strftime("%Y-%m-%d %H.%M.%S", time.localtime())
 
         log_dir = 'log/' + self.dataset
-        model_dir = 'model/' + self.dataset
+        model_dir = 'log/' + self.dataset
         self.make_dir(log_dir)
         self.make_dir(model_dir)
 
@@ -47,9 +48,9 @@ class DefaultConfig(object):
         model_path = model_dir + '/' + str_time + '_' + \
             self.backbone + "_" + self.method + '.pth'
 
-        final_log_dir = 'log_' + self.dataset
-        self.make_dir(final_log_dir)
-        q_path = 'perf' + '/q' + '-%s' % self.dataset
+        q_dir = log_dir + '/perf'
+        self.make_dir(q_dir)
+        q_path = q_dir + '/q-%s' % self.dataset
 
         lgcn_graph_dir = './lgcn_graph/' + self.dataset
         self.make_dir(lgcn_graph_dir)
@@ -105,7 +106,7 @@ class DefaultConfig(object):
         """
         To print string to log file and the window
         """
-        util.print_str(self.log_path, str_to_print, file, window)
+        utils.print_str(self.log_path, str_to_print, file, window)
 
     def get_data_process_para(self):
         if self.dataset == 'Douban-movie':

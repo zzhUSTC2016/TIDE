@@ -7,7 +7,7 @@ import sys
 import time
 import pandas as pd
 
-import util
+import utils
 sys.path.append('cppcode')
 
 
@@ -297,8 +297,8 @@ class Evaluator(object):
                     np.min(q), np.mean(q), np.max(q), np.nanvar(q))
                 str_tide_para_b = 'min(b) = %f, mean(b) = %f, max(b) = %f, var(b) = %f' % (
                     np.min(b), np.mean(b), np.max(b), np.nanvar(b))
-                util.print_str(opt.log_path, str_tide_para_q)
-                util.print_str(opt.log_path, str_tide_para_b)
+                utils.print_str(opt.log_path, str_tide_para_q)
+                utils.print_str(opt.log_path, str_tide_para_b)
         else:
             popularity_item_np = 0
 
@@ -311,7 +311,7 @@ class Evaluator(object):
                     (ret['recall@3'][0], ret['precision@3'][0])
 
         if opt.show_performance:
-            util.print_str(opt.log_path, perf_str1 + perf_str2)
+            utils.print_str(opt.log_path, perf_str1 + perf_str2)
             # util.print_str(opt.log_path, perf_str2)
 
         save_model_flag = 0
