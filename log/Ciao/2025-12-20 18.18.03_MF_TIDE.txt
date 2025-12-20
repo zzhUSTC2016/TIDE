@@ -1,0 +1,124 @@
+backbone = MF, method = TIDE, dataset = Ciao, val = True
+lr = 0.0010, lamb = 0.0, batch_size = 8192, topk = 20
+tau = 10000000.0, q = -1, b = -1, lr_q = 0.1, lr_b = 0.001
+min(q) = 0.011711, mean(q) = 0.097253, max(q) = 2.310377, var(q) = 0.027215
+min(b) = 0.309020, mean(b) = 0.320170, max(b) = 0.329051, var(b) = 0.000008
+recall=[0.02105], precision=[0.00816], ndcg=[0.00786]recall@3=[0.23767], precision@3=[0.50000]
+loss_sum: 36.40603
+The time elapse of epoch 000 is: 00:00:05
+
+min(q) = 0.005634, mean(q) = 0.069077, max(q) = 2.762028, var(q) = 0.036818
+min(b) = 0.310406, mean(b) = 0.327694, max(b) = 0.345555, var(b) = 0.000029
+recall=[0.02825], precision=[0.01037], ndcg=[0.01248]recall@3=[0.24504], precision@3=[0.51905]
+loss_sum: 34.51953
+The time elapse of epoch 001 is: 00:00:04
+
+min(q) = 0.003579, mean(q) = 0.061134, max(q) = 3.068829, var(q) = 0.040442
+min(b) = 0.311546, mean(b) = 0.336191, max(b) = 0.364398, var(b) = 0.000066
+recall=[0.02784], precision=[0.01156], ndcg=[0.01357]recall@3=[0.24895], precision@3=[0.52143]
+loss_sum: 30.38080
+The time elapse of epoch 002 is: 00:00:04
+
+min(q) = 0.002729, mean(q) = 0.055246, max(q) = 3.196285, var(q) = 0.034398
+min(b) = 0.313262, mean(b) = 0.346111, max(b) = 0.380158, var(b) = 0.000112
+recall=[0.02904], precision=[0.01224], ndcg=[0.01367]recall@3=[0.24532], precision@3=[0.52143]
+loss_sum: 24.97090
+The time elapse of epoch 003 is: 00:00:04
+
+min(q) = 0.001895, mean(q) = 0.050089, max(q) = 3.170530, var(q) = 0.024795
+min(b) = 0.312574, mean(b) = 0.356832, max(b) = 0.398512, var(b) = 0.000155
+recall=[0.02695], precision=[0.01173], ndcg=[0.01355]recall@3=[0.23664], precision@3=[0.50476]
+loss_sum: 20.38829
+The time elapse of epoch 004 is: 00:00:04
+
+min(q) = 0.001357, mean(q) = 0.045588, max(q) = 2.994045, var(q) = 0.017517
+min(b) = 0.312023, mean(b) = 0.367353, max(b) = 0.411917, var(b) = 0.000188
+recall=[0.02646], precision=[0.01173], ndcg=[0.01339]recall@3=[0.23428], precision@3=[0.50238]
+loss_sum: 16.82130
+The time elapse of epoch 005 is: 00:00:04
+
+min(q) = 0.001094, mean(q) = 0.043683, max(q) = 2.217036, var(q) = 0.013026
+min(b) = 0.312627, mean(b) = 0.377086, max(b) = 0.419612, var(b) = 0.000218
+recall=[0.02818], precision=[0.01190], ndcg=[0.01230]recall@3=[0.23750], precision@3=[0.51429]
+loss_sum: 14.03497
+The time elapse of epoch 006 is: 00:00:04
+
+min(q) = 0.000939, mean(q) = 0.044102, max(q) = 2.395007, var(q) = 0.011761
+min(b) = 0.311324, mean(b) = 0.385748, max(b) = 0.431892, var(b) = 0.000254
+recall=[0.03186], precision=[0.01156], ndcg=[0.01193]recall@3=[0.23404], precision@3=[0.51667]
+loss_sum: 11.87506
+The time elapse of epoch 007 is: 00:00:03
+
+min(q) = 0.000822, mean(q) = 0.045558, max(q) = 2.579695, var(q) = 0.011573
+min(b) = 0.308126, mean(b) = 0.393350, max(b) = 0.440903, var(b) = 0.000299
+recall=[0.03073], precision=[0.01207], ndcg=[0.01249]recall@3=[0.23916], precision@3=[0.52381]
+loss_sum: 10.30842
+The time elapse of epoch 008 is: 00:00:04
+
+min(q) = 0.000739, mean(q) = 0.047349, max(q) = 2.769606, var(q) = 0.011324
+min(b) = 0.297833, mean(b) = 0.399986, max(b) = 0.448471, var(b) = 0.000346
+recall=[0.02742], precision=[0.01105], ndcg=[0.01199]recall@3=[0.24183], precision@3=[0.52381]
+loss_sum: 9.06392
+The time elapse of epoch 009 is: 00:00:04
+
+min(q) = 0.000659, mean(q) = 0.048030, max(q) = 2.905358, var(q) = 0.012034
+min(b) = 0.294158, mean(b) = 0.405810, max(b) = 0.455216, var(b) = 0.000397
+recall=[0.02662], precision=[0.01122], ndcg=[0.01190]recall@3=[0.22987], precision@3=[0.50238]
+loss_sum: 8.16518
+The time elapse of epoch 010 is: 00:00:04
+
+min(q) = 0.000598, mean(q) = 0.049281, max(q) = 3.025645, var(q) = 0.012527
+min(b) = 0.292156, mean(b) = 0.410952, max(b) = 0.465480, var(b) = 0.000449
+recall=[0.02769], precision=[0.01122], ndcg=[0.01171]recall@3=[0.23510], precision@3=[0.51190]
+loss_sum: 7.42384
+The time elapse of epoch 011 is: 00:00:04
+
+min(q) = 0.000548, mean(q) = 0.050474, max(q) = 3.150906, var(q) = 0.013475
+min(b) = 0.288888, mean(b) = 0.415543, max(b) = 0.473030, var(b) = 0.000499
+recall=[0.02543], precision=[0.01020], ndcg=[0.01078]recall@3=[0.23379], precision@3=[0.50714]
+loss_sum: 6.92164
+The time elapse of epoch 012 is: 00:00:03
+
+min(q) = 0.000518, mean(q) = 0.051791, max(q) = 3.216437, var(q) = 0.014469
+min(b) = 0.285271, mean(b) = 0.419692, max(b) = 0.480221, var(b) = 0.000548
+recall=[0.03028], precision=[0.01156], ndcg=[0.01255]recall@3=[0.23335], precision@3=[0.50714]
+loss_sum: 6.37642
+The time elapse of epoch 013 is: 00:00:04
+
+min(q) = 0.000464, mean(q) = 0.051320, max(q) = 3.251018, var(q) = 0.013700
+min(b) = 0.283742, mean(b) = 0.423411, max(b) = 0.482677, var(b) = 0.000595
+recall=[0.02570], precision=[0.01105], ndcg=[0.01210]recall@3=[0.23261], precision@3=[0.50476]
+loss_sum: 5.99370
+The time elapse of epoch 014 is: 00:00:04
+
+min(q) = 0.000449, mean(q) = 0.053261, max(q) = 3.229233, var(q) = 0.014508
+min(b) = 0.283553, mean(b) = 0.426843, max(b) = 0.492852, var(b) = 0.000639
+recall=[0.02415], precision=[0.01173], ndcg=[0.01251]recall@3=[0.23382], precision@3=[0.50952]
+loss_sum: 5.70539
+The time elapse of epoch 015 is: 00:00:03
+
+min(q) = 0.000433, mean(q) = 0.054548, max(q) = 3.297941, var(q) = 0.015486
+min(b) = 0.284140, mean(b) = 0.429980, max(b) = 0.498378, var(b) = 0.000678
+recall=[0.02005], precision=[0.01105], ndcg=[0.01177]recall@3=[0.23669], precision@3=[0.51429]
+loss_sum: 5.39672
+The time elapse of epoch 016 is: 00:00:04
+
+min(q) = 0.000421, mean(q) = 0.055872, max(q) = 3.353778, var(q) = 0.015735
+min(b) = 0.283736, mean(b) = 0.432915, max(b) = 0.508768, var(b) = 0.000718
+recall=[0.01978], precision=[0.01071], ndcg=[0.01136]recall@3=[0.23388], precision@3=[0.51190]
+loss_sum: 5.17615
+The time elapse of epoch 017 is: 00:00:03
+
+min(q) = 0.000396, mean(q) = 0.056884, max(q) = 3.393298, var(q) = 0.016205
+min(b) = 0.279294, mean(b) = 0.435626, max(b) = 0.511093, var(b) = 0.000755
+recall=[0.01663], precision=[0.00969], ndcg=[0.01097]recall@3=[0.23156], precision@3=[0.50238]
+loss_sum: 4.93335
+The time elapse of epoch 018 is: 00:00:03
+
+Early stopping at epoch 18
+End. Best epoch 007: recall = 0.03186, precision = 0.01156, NDCG = 0.01193, averageRating = 4.00333
+recall@3 = 0.23404, precision@3 = 0.51667
+---------testing----------
+min(q) = 0.000939, mean(q) = 0.044102, max(q) = 2.395007, var(q) = 0.011761
+min(b) = 0.311324, mean(b) = 0.385748, max(b) = 0.431892, var(b) = 0.000254
+recall=[0.02730], precision=[0.01540], ndcg=[0.01586]recall@3=[0.26108], precision@3=[0.55191]

@@ -7,7 +7,10 @@ data/*/*
 !data/*/readme.md
 
 log/*
-!log/Amazon-Health/
-log/Amazon-Health/*
-!log/Amazon-Health/*.txt
+# !log/Amazon-Health/
+# log/Amazon-Health/*
+# !log/Amazon-Health/*.txt
 
+!log/Ciao/
+log/Ciao/*
+!log/Ciao/*.txt

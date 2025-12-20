@@ -6,9 +6,9 @@ class DefaultConfig(object):
     def __init__(self):
         # 基本配置
         self.backbone = 'MF'  # 'LightGCN'
-        self.dataset = 'Amazon-Health'  # 'Douban-movie' 'Amazon-CDs_and_Vinyl' 'Ciao' 'Amazon-Music' 'Amazon-Health'
+        self.dataset = 'Ciao'  # 'Douban-movie' 'Amazon-CDs_and_Vinyl' 'Ciao' 'Amazon-Music' 'Amazon-Health'
         # self.dataset = 'Douban-movie'  # 'Douban-movie' 'Amazon-CDs_and_Vinyl' 'Ciao' 'Amazon-Music' 'Amazon-Health'
-        self.method = 'DICE'  # 'base' 'IPS' 'PD' 'PDA' 'DICE' 'TIDE' 'TIDE-fixq'
+        self.method = 'TIDE'  # 'base' 'IPS' 'DICE' 'PD' 'PDA' 'TIDE' 'TIDE-fixq'
         self.val = True
         self.test_only = False
         self.show_performance = True

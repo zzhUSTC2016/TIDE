@@ -1,0 +1,75 @@
+backbone = MF, method = DICE, dataset = Ciao, val = True
+lr = 0.0010, lamb = 0.0, batch_size = 8192, topk = 20
+recall=[0.02211], precision=[0.00731], ndcg=[0.00785]recall@3=[0.25463], precision@3=[0.55238]
+loss_sum: 421121.65625
+The time elapse of epoch 000 is: 00:00:05
+
+recall=[0.02586], precision=[0.00901], ndcg=[0.00919]recall@3=[0.26044], precision@3=[0.54762]
+loss_sum: 359831.84375
+The time elapse of epoch 001 is: 00:00:05
+
+recall=[0.03021], precision=[0.01054], ndcg=[0.01188]recall@3=[0.26647], precision@3=[0.55714]
+loss_sum: 293149.37500
+The time elapse of epoch 002 is: 00:00:05
+
+recall=[0.02699], precision=[0.00969], ndcg=[0.01084]recall@3=[0.26437], precision@3=[0.55000]
+loss_sum: 261732.26562
+The time elapse of epoch 003 is: 00:00:04
+
+recall=[0.02813], precision=[0.01224], ndcg=[0.01279]recall@3=[0.27265], precision@3=[0.56667]
+loss_sum: 242753.31250
+The time elapse of epoch 004 is: 00:00:04
+
+recall=[0.02929], precision=[0.01241], ndcg=[0.01305]recall@3=[0.27238], precision@3=[0.56429]
+loss_sum: 227556.73438
+The time elapse of epoch 005 is: 00:00:04
+
+recall=[0.02869], precision=[0.01259], ndcg=[0.01334]recall@3=[0.27098], precision@3=[0.55714]
+loss_sum: 212346.45312
+The time elapse of epoch 006 is: 00:00:05
+
+recall=[0.02583], precision=[0.01139], ndcg=[0.01188]recall@3=[0.26012], precision@3=[0.53810]
+loss_sum: 196930.10938
+The time elapse of epoch 007 is: 00:00:05
+
+recall=[0.02513], precision=[0.00986], ndcg=[0.01024]recall@3=[0.25082], precision@3=[0.52857]
+loss_sum: 181270.98438
+The time elapse of epoch 008 is: 00:00:04
+
+recall=[0.02408], precision=[0.00952], ndcg=[0.00962]recall@3=[0.25483], precision@3=[0.53810]
+loss_sum: 165538.43750
+The time elapse of epoch 009 is: 00:00:04
+
+recall=[0.02335], precision=[0.00901], ndcg=[0.00909]recall@3=[0.25786], precision@3=[0.54048]
+loss_sum: 149205.37500
+The time elapse of epoch 010 is: 00:00:04
+
+recall=[0.02346], precision=[0.00884], ndcg=[0.00879]recall@3=[0.25925], precision@3=[0.55714]
+loss_sum: 132995.46875
+The time elapse of epoch 011 is: 00:00:04
+
+recall=[0.02319], precision=[0.00901], ndcg=[0.00923]recall@3=[0.26308], precision@3=[0.56429]
+loss_sum: 117022.75781
+The time elapse of epoch 012 is: 00:00:05
+
+recall=[0.02137], precision=[0.00918], ndcg=[0.00933]recall@3=[0.26013], precision@3=[0.55238]
+loss_sum: 100707.32812
+The time elapse of epoch 013 is: 00:00:04
+
+recall=[0.02091], precision=[0.00918], ndcg=[0.00919]recall@3=[0.26872], precision@3=[0.56429]
+loss_sum: 85601.51562
+The time elapse of epoch 014 is: 00:00:05
+
+recall=[0.02115], precision=[0.00918], ndcg=[0.00940]recall@3=[0.27079], precision@3=[0.56667]
+loss_sum: 70783.82031
+The time elapse of epoch 015 is: 00:00:04
+
+recall=[0.02095], precision=[0.00867], ndcg=[0.00861]recall@3=[0.26506], precision@3=[0.55238]
+loss_sum: 56021.77734
+The time elapse of epoch 016 is: 00:00:04
+
+Early stopping at epoch 16
+End. Best epoch 005: recall = 0.02929, precision = 0.01241, NDCG = 0.01305, averageRating = 4.19053
+recall@3 = 0.27238, precision@3 = 0.56429
+---------testing----------
+recall=[0.02041], precision=[0.01293], ndcg=[0.01348]recall@3=[0.25529], precision@3=[0.54918]
