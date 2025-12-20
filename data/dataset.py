@@ -14,8 +14,10 @@ elif opt.dataset == 'Amazon-Music':
     pbd = cppimport.imp("pybind_amazon_music")
 elif opt.dataset == 'Ciao':
     pbd = cppimport.imp("pybind_ciao")
-elif opt.dataset == 'gowalla':
-    pbd = cppimport.imp("pybind_gowalla")
+elif opt.dataset == 'Amazon-Health':
+    pbd = cppimport.imp("pybind_amazon_health")
+else:
+    raise ValueError(f"Unsupported dataset: {opt.dataset}")
 
 
 class Data(Dataset):

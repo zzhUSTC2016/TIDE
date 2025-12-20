@@ -10,7 +10,7 @@ def train_one_epoch(model, train_loader, optimizer, opt, DICE_alpha=0.1/0.9):
     - loss_sum: total loss for this epoch
     """
     model.train()
-    start_time = time.time()
+    
     train_loader.dataset.ng_sample()  # generate training samples
     loss_sum = torch.tensor([0.0]).cuda()
 
@@ -38,8 +38,7 @@ def train_one_epoch(model, train_loader, optimizer, opt, DICE_alpha=0.1/0.9):
         optimizer.step()
         loss_sum += loss
 
-    elapsed_time = time.time() - start_time
-    return loss_sum, elapsed_time
+    return loss_sum
 
 
 def train_model(opt, train_loader, model, optimizer, evaluator, max_patience=10):
@@ -50,13 +49,11 @@ def train_model(opt, train_loader, model, optimizer, evaluator, max_patience=10)
     DICE_alpha = 0.1 / 0.9
 
     for epoch in range(opt.epochs):
+        start_time = time.time()
+
         DICE_alpha *= 0.9
 
-        loss_sum, elapsed_time = train_one_epoch(model, train_loader, optimizer, opt, DICE_alpha)
-
-        # Logging
-        if opt.show_performance:
-            utils.log_epoch_loss(opt, epoch, elapsed_time, loss_sum=loss_sum)  # you can add individual losses if needed
+        loss_sum = train_one_epoch(model, train_loader, optimizer, opt, DICE_alpha)
 
         # Evaluation
         model.eval()
@@ -65,6 +62,11 @@ def train_model(opt, train_loader, model, optimizer, evaluator, max_patience=10)
             torch.save(model.state_dict(), opt.model_path)
             if opt.show_performance:
                 print(f"Saved model at epoch {epoch}")
+
+        elapsed_time = time.time() - start_time
+        # Logging
+        if opt.show_performance:
+            utils.log_epoch_loss(opt, epoch, elapsed_time, loss_sum=loss_sum)  # you can add individual losses if needed
 
         # Early stopping
         if epoch - evaluator.best_perf['best_epoch'] > max_patience:

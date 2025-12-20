@@ -6,4 +6,8 @@ cppcode/*.so
 data/*/*
 !data/*/readme.md
 
-log/
+log/*
+!log/Amazon-Health/
+log/Amazon-Health/*
+!log/Amazon-Health/*.txt
+

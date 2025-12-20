@@ -16,8 +16,8 @@ setup_pybind11(cfg)
 #define _CRT_SECURE_NO_WARNINGS
 
 namespace py = pybind11;
-#define item_num 64443   //64443  26813
 #define user_num 75258   //75258  48799
+#define item_num 64443   //64443  26813
 
 double* item_popularity[item_num * sizeof(double)];
 double* grad[item_num * sizeof(double)];

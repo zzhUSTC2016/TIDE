@@ -1,0 +1,88 @@
+backbone = MF, method = PD, dataset = Amazon-Health, val = True
+lr = 0.0010, lamb = 0.0, batch_size = 8192, topk = 20
+PDA_gamma = 0.12
+recall=[0.00508], precision=[0.00168], ndcg=[0.00184]recall@3=[0.44077], precision@3=[0.67338]
+loss_sum: 34.40935
+The time elapse of epoch 000 is: 00:00:21
+
+recall=[0.00859], precision=[0.00261], ndcg=[0.00286]recall@3=[0.44177], precision@3=[0.67426]
+loss_sum: 33.65327
+The time elapse of epoch 001 is: 00:00:21
+
+recall=[0.00903], precision=[0.00268], ndcg=[0.00299]recall@3=[0.44189], precision@3=[0.67510]
+loss_sum: 30.81316
+The time elapse of epoch 002 is: 00:00:24
+
+recall=[0.00974], precision=[0.00277], ndcg=[0.00316]recall@3=[0.44126], precision@3=[0.67315]
+loss_sum: 26.93771
+The time elapse of epoch 003 is: 00:00:20
+
+recall=[0.01034], precision=[0.00300], ndcg=[0.00341]recall@3=[0.44092], precision@3=[0.67306]
+loss_sum: 23.48397
+The time elapse of epoch 004 is: 00:00:21
+
+recall=[0.01101], precision=[0.00318], ndcg=[0.00364]recall@3=[0.44017], precision@3=[0.67195]
+loss_sum: 20.48464
+The time elapse of epoch 005 is: 00:00:23
+
+recall=[0.01164], precision=[0.00338], ndcg=[0.00400]recall@3=[0.43978], precision@3=[0.67121]
+loss_sum: 17.80024
+The time elapse of epoch 006 is: 00:00:18
+
+recall=[0.01162], precision=[0.00337], ndcg=[0.00405]recall@3=[0.44009], precision@3=[0.67195]
+loss_sum: 15.44527
+The time elapse of epoch 007 is: 00:00:20
+
+recall=[0.01171], precision=[0.00339], ndcg=[0.00410]recall@3=[0.43975], precision@3=[0.67144]
+loss_sum: 13.35918
+The time elapse of epoch 008 is: 00:00:18
+
+recall=[0.01153], precision=[0.00336], ndcg=[0.00402]recall@3=[0.43994], precision@3=[0.67172]
+loss_sum: 11.57098
+The time elapse of epoch 009 is: 00:00:17
+
+recall=[0.01135], precision=[0.00328], ndcg=[0.00390]recall@3=[0.43988], precision@3=[0.67158]
+loss_sum: 10.01482
+The time elapse of epoch 010 is: 00:00:17
+
+recall=[0.01121], precision=[0.00326], ndcg=[0.00391]recall@3=[0.43985], precision@3=[0.67130]
+loss_sum: 8.68230
+The time elapse of epoch 011 is: 00:00:23
+
+recall=[0.01104], precision=[0.00320], ndcg=[0.00387]recall@3=[0.43967], precision@3=[0.67107]
+loss_sum: 7.56437
+The time elapse of epoch 012 is: 00:00:23
+
+recall=[0.01123], precision=[0.00332], ndcg=[0.00406]recall@3=[0.43975], precision@3=[0.67121]
+loss_sum: 6.60601
+The time elapse of epoch 013 is: 00:00:24
+
+recall=[0.01113], precision=[0.00331], ndcg=[0.00408]recall@3=[0.44022], precision@3=[0.67167]
+loss_sum: 5.79309
+The time elapse of epoch 014 is: 00:00:21
+
+recall=[0.01058], precision=[0.00315], ndcg=[0.00376]recall@3=[0.44013], precision@3=[0.67144]
+loss_sum: 5.11490
+The time elapse of epoch 015 is: 00:00:20
+
+recall=[0.00994], precision=[0.00290], ndcg=[0.00337]recall@3=[0.43937], precision@3=[0.67056]
+loss_sum: 4.52822
+The time elapse of epoch 016 is: 00:00:23
+
+recall=[0.00951], precision=[0.00274], ndcg=[0.00317]recall@3=[0.43930], precision@3=[0.67070]
+loss_sum: 4.02559
+The time elapse of epoch 017 is: 00:00:20
+
+recall=[0.00933], precision=[0.00267], ndcg=[0.00308]recall@3=[0.43986], precision@3=[0.67153]
+loss_sum: 3.58975
+The time elapse of epoch 018 is: 00:00:22
+
+recall=[0.00931], precision=[0.00268], ndcg=[0.00311]recall@3=[0.44009], precision@3=[0.67185]
+loss_sum: 3.22946
+The time elapse of epoch 019 is: 00:00:20
+
+Early stopping at epoch 19
+End. Best epoch 008: recall = 0.01171, precision = 0.00339, NDCG = 0.00410, averageRating = 4.37446
+recall@3 = 0.43975, precision@3 = 0.67144
+---------testing----------
+recall=[0.01363], precision=[0.00366], ndcg=[0.00425]recall@3=[0.44230], precision@3=[0.67201]

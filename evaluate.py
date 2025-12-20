@@ -70,8 +70,10 @@ class Evaluator(object):
             self.pbd = cppimport.imp("pybind_amazon_music")
         elif opt.dataset == 'Ciao':
             self.pbd = cppimport.imp("pybind_ciao")
-        elif opt.dataset == 'gowalla':
-            self.pbd = cppimport.imp("pybind_gowalla")
+        elif opt.dataset == 'Amazon-Health':
+            self.pbd = cppimport.imp("pybind_amazon_health")
+        else:
+            raise ValueError("Dataset not supported.")
 
     def elu(self, x):
         return np.maximum(0, x) + np.minimum(0, np.exp(x) - 1) + 1

@@ -5,7 +5,14 @@ import numpy as np
 import torch.optim as optim
 import pandas as pd
 
-def setup_seed(seed):
+
+def setup_seed(seed: int):
+    """
+    Set random seed for reproducibility.
+
+    Parameters:
+    - seed (int): random seed value
+    """
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     np.random.seed(seed)
@@ -26,25 +33,31 @@ def get_optimizer(model, opt):
     Returns:
     - optimizer: a torch.optim.Adam optimizer
     """
-    
-    if opt.backbone == 'MF':
-        # Parameters for Matrix Factorization
+    # 兼容参数未定义的情况
+    lr = getattr(opt, 'lr', 0.001)
+    lr_q = getattr(opt, 'lr_q', 0.001)
+    lr_b = getattr(opt, 'lr_b', 0.001)
+    lamb = getattr(opt, 'lamb', 0.0)        # 用户/物品嵌入正则化
+    lamb_q = getattr(opt, 'lamb_q', 0.0)    # q 正则化
+    lamb_b = getattr(opt, 'lamb_b', 0.0)    # b 正则化
+
+    if getattr(opt, 'backbone', 'MF') == 'MF':
         params = [
-            {"params": model.embed_user.weight, "lr": opt.lr},
-            {"params": model.embed_item.weight, "lr": opt.lr},
-            {"params": model.q, "lr": opt.lr_q, 'weight_decay': opt.lamb_q},
-            {"params": model.b, "lr": opt.lr_b, 'weight_decay': opt.lamb_b}
+            {"params": model.embed_user.weight, "lr": lr},
+            {"params": model.embed_item.weight, "lr": lr},
+            {"params": getattr(model, 'q', torch.tensor([])), "lr": lr_q, 'weight_decay': lamb_q},
+            {"params": getattr(model, 'b', torch.tensor([])), "lr": lr_b, 'weight_decay': lamb_b}
         ]
     elif opt.backbone == 'LightGCN':
-        # Parameters for LightGCN
         params = [
-            {"params": model.embed_user_0.weight, "lr": opt.lr},
-            {"params": model.embed_item_0.weight, "lr": opt.lr},
-            {"params": model.q, "lr": opt.lr_q, 'weight_decay': opt.lamb_q},
-            {"params": model.b, "lr": opt.lr_b, 'weight_decay': opt.lamb_b}
+            {"params": model.embed_user_0.weight, "lr": lr, 'weight_decay': lamb},
+            {"params": model.embed_item_0.weight, "lr": lr, 'weight_decay': lamb},
+            {"params": getattr(model, 'q', torch.tensor([])), "lr": lr_q, 'weight_decay': lamb_q},
+            {"params": getattr(model, 'b', torch.tensor([])), "lr": lr_b, 'weight_decay': lamb_b}
         ]
     else:
-        raise ValueError("Unsupported backbone: {}".format(opt.backbone))
+        raise ValueError("Unsupported backbone: {}".format(getattr(opt, 'backbone', None)))
+
 
     optimizer = optim.Adam(params)
     return optimizer
@@ -101,14 +114,19 @@ def get_dataset_info(train_data: pd.DataFrame,
     return user_num, item_num, min_time, max_time
 
 
-def print_str(file_path, str_to_print, file=True, window=True):
+def print_str(file_path: str, str_to_print: str, file: bool = True, window: bool = True):
     """
-    To print string to log file and the window
+    Print string to log file and/or console window.
+
+    Parameters:
+    - file_path (str): path to log file
+    - str_to_print (str): string content
+    - file (bool): whether to write to file
+    - window (bool): whether to print to console
     """
     if file:
         with open(file_path, 'a+') as f_log:
-            f_log.write(str_to_print)
-            f_log.write('\n')
+            f_log.write(str_to_print + '\n')
     if window:
         print(str_to_print)
 
@@ -117,18 +135,12 @@ def print_perf(best_perf: dict, log_path: str):
     """
     Print and log the best evaluation performance.
 
-    This function is designed to be fully compatible with the Evaluator.best_perf
-    structure used in the project.
-
     Parameters:
-    - best_perf (dict): best performance dictionary from Evaluator,
-                        expected keys:
-                        ['recall', 'precision', 'ndcg', 'averageRating',
-                         'recall@3', 'precision@3', 'best_epoch']
+    - best_perf (dict): expected keys ['recall', 'precision', 'ndcg', 'averageRating',
+                                       'recall@3', 'precision@3', 'best_epoch']
+                        values are expected to be 1-element arrays
     - log_path (str): path to the log file
     """
-
-    # Extract values (Evaluator stores metrics as 1-element arrays)
     best_epoch = int(best_perf['best_epoch'])
     recall = best_perf['recall'][0]
     precision = best_perf['precision'][0]
@@ -137,94 +149,65 @@ def print_perf(best_perf: dict, log_path: str):
     recall_3 = best_perf['recall@3'][0]
     precision_3 = best_perf['precision@3'][0]
 
-    # Main performance string (same as original code style)
     perf_str = (
-        "\nEnd. Best epoch {:03d}: recall = {:.5f}, precision = {:.5f}, "
+        "End. Best epoch {:03d}: recall = {:.5f}, precision = {:.5f}, "
         "NDCG = {:.5f}, averageRating = {:.5f}"
-    ).format(
-        best_epoch,
-        recall,
-        precision,
-        ndcg,
-        avg_rating
-    )
+    ).format(best_epoch, recall, precision, ndcg, avg_rating)
 
-    # Additional @3 metrics
-    perf_str_3 = (
-        "recall@3 = {:.5f}, precision@3 = {:.5f}"
-    ).format(
-        recall_3,
-        precision_3
-    )
+    perf_str_3 = "recall@3 = {:.5f}, precision@3 = {:.5f}".format(recall_3, precision_3)
 
-    # Write to log file
     with open(log_path, 'a+') as f_log:
-        f_log.write(perf_str)
-        f_log.write('\n' + perf_str_3 + '\n')
+        f_log.write(perf_str + '\n' + perf_str_3 + '\n')
 
-    # Print to console
     print(perf_str)
     print(perf_str_3)
 
 
-def log_epoch_loss(opt, epoch, elapsed_time, **loss_dict):
+def log_epoch_loss(opt, epoch: int, elapsed_time: float, **loss_dict):
     """
     Log and print epoch losses and elapsed time.
-
-    This function automatically logs and prints all loss values
-    that are not None, making it method-agnostic (e.g., DICE or others).
 
     Parameters:
     - opt: options object containing log_path
     - epoch (int): current epoch number
-    - elapsed_time (float): time spent for this epoch (in seconds)
+    - elapsed_time (float): time spent for this epoch (seconds)
     - **loss_dict: named loss tensors (e.g., loss, loss_sum, loss_click, ...)
                    only losses that are not None will be logged
     """
-
     loss_parts = []
 
-    # Collect all non-None losses
     for loss_name, loss_value in loss_dict.items():
         if loss_value is None:
             continue
-
-        # Convert tensor to scalar
         if hasattr(loss_value, "detach"):
             loss_scalar = loss_value.detach().cpu().numpy()
             if hasattr(loss_scalar, "__len__"):
                 loss_scalar = loss_scalar[0]
         else:
             loss_scalar = loss_value
-
         loss_parts.append(f"{loss_name}: {loss_scalar:.5f}")
 
-    # Join all loss strings
     loss_str = " | ".join(loss_parts)
-
-    # Format epoch time
     time_str = "The time elapse of epoch {:03d} is: {}".format(
         epoch, time.strftime("%H:%M:%S", time.gmtime(elapsed_time))
     )
 
-    # Write to log file
-    with open(opt.log_path, 'a+') as f_log:
+    log_path = getattr(opt, 'log_path', 'train.log')
+    with open(log_path, 'a+') as f_log:
         f_log.write(loss_str + '\n')
         f_log.write(time_str + '\n\n')
 
-    # Print to console
     print(loss_str)
     print(time_str)
 
 
-
 def import_pybind_module(dataset: str):
     """
-    Import the corresponding pybind11 module based on the dataset name.
+    Import the corresponding pybind11 module based on dataset name.
 
     Parameters:
     - dataset (str): Name of the dataset. Supported datasets:
-      'Douban-movie', 'Amazon-CDs_and_Vinyl', 'Amazon-Music', 'Ciao', 'gowalla'
+      'Douban-movie', 'Amazon-CDs_and_Vinyl', 'Amazon-Music', 'Ciao', 'Amazon-Health'
 
     Returns:
     - module: The imported pybind11 module
@@ -237,7 +220,7 @@ def import_pybind_module(dataset: str):
         'Amazon-CDs_and_Vinyl': 'pybind_amazon_cd',
         'Amazon-Music': 'pybind_amazon_music',
         'Ciao': 'pybind_ciao',
-        'gowalla': 'pybind_gowalla'
+        'Amazon-Health': 'pybind_amazon_health',
     }
 
     if dataset not in dataset_map:

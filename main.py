@@ -27,6 +27,7 @@ def main():
     # Load datasets and info
     train_data, val_data, test_data = utils.load_datasets(opt.train_data, opt.val_data, opt.test_data)
     user_num, item_num, min_time, max_time = utils.get_dataset_info(train_data, val_data, test_data)
+    print(f'User num: {user_num}, Item num: {item_num}, Time range: [{min_time}, {max_time}]')
 
     # Model & Optimizer
     model = getattr(models, 'Models')(user_num, item_num, 64, min_time, max_time)
@@ -68,28 +69,28 @@ def test_after_training():
     opt.test_only = True
     opt.val = False
     opt.get_input_path()
-    print('---------testing----------')
+    utils.print_str(opt.log_path, '---------testing----------')
     main()
-    if opt.method == 'TIDE':
-        '''opt.method = 'TIDE-e'
-        print('---------testing TIDE-e----------')
-        main()'''
-        opt.method = 'TIDE-int'
-        print('---------testing TIDE-int----------')
-        main()
+    # if opt.method == 'TIDE':
+    #     '''opt.method = 'TIDE-e'
+    #     print('---------testing TIDE-e----------')
+    #     main()'''
+    #     opt.method = 'TIDE-int'
+    #     print('---------testing TIDE-int----------')
+    #     main()
 
 
 def main_base():
     lr_list = [opt.lr]
     lamb_list = [opt.lamb]
-    '''lr_list = [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1]
-    lamb_list = [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1]'''
+    # lr_list = [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03]
+    # lamb_list = [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1]
 
     # lr_list = [0.1, 1, 10]
     # lamb_list = [0.00001, 0.0001, 0.001]
 
-    '''lr_list = [0.00003, 0.0001, 0.0003]
-    lamb_list = [0.003, 0.01]'''
+    # lr_list = [0.0003]
+    # lamb_list = [0, 0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.1]
 
     best_para = {'lr': 0, 'lamb': 0}
     best_perf = {'recall': np.zeros((1,)),
@@ -111,7 +112,7 @@ def main_base():
 
         for opt.lamb in lamb_list:
             for opt.lr in lr_list:
-                str_para = 'lr = %f, lamb = %f' % (opt.lr, opt.lamb)
+                str_para = '\nlr = %f, lamb = %f' % (opt.lr, opt.lamb)
                 utils.print_str(opt.log_path, str_para)
                 perf = main()
                 perf_df[str(opt.lr)][str(opt.lamb)] = perf['ndcg']

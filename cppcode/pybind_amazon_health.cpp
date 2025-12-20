@@ -16,13 +16,13 @@ setup_pybind11(cfg)
 #define _CRT_SECURE_NO_WARNINGS
 
 namespace py = pybind11;
-#define user_num 5868   //75258  48799
-#define item_num 10724   //64443  26813
+#define user_num 38609   //75258  48799
+#define item_num 18534   //64443  26813
 
-double* item_popularity[item_num];
-double* grad[item_num];
-int* item_interaction[item_num];
-int* user_interaction[user_num];
+double* item_popularity[item_num * sizeof(double)];
+double* grad[item_num * sizeof(double)];
+int* item_interaction[item_num * sizeof(int*)];
+int* user_interaction[user_num * sizeof(int*)];
 
 int idx, i, itr_num_item, j, itemid;
 int timestamp;
@@ -41,15 +41,14 @@ void load_popularity(py::array_t<double>& tau_p)
 	
 	//printf("%f", tau);
 
-	char buffer[8192*16] = { 0 };
+	char buffer[8192 * 16] = { 0 };
 	char* line, * record = 0;
 
-	if ((fp = fopen("./data/Ciao/item_interactions.csv", "r")) != NULL)                                  
+	if ((fp = fopen("./data/Amazon-Health/item_interactions.csv", "r")) != NULL)                                  
 	{ 
-
+		
 		for (i = 0; i < item_num; i++)
 		{
-
 			line = fgets(buffer, sizeof(buffer), fp);
 			idx = atoi(strtok(line, ","));  //itemID
 			tau[idx] = ptr1[idx];
@@ -77,7 +76,6 @@ void load_popularity(py::array_t<double>& tau_p)
 				free(grad[i]);
 				grad[i] = NULL;
 			}
-
 			item_interaction[i] = (int*)malloc((itr_num_item) * sizeof(int));
 			item_popularity[i] = (double*)malloc((itr_num_item) * sizeof(double));
 			grad[i] = (double*)malloc((itr_num_item) * sizeof(double));
@@ -98,7 +96,7 @@ void load_popularity(py::array_t<double>& tau_p)
 		
 		}
 		//printf("load finished\n");
-
+		
 		fclose(fp);
 		
 	}
@@ -209,7 +207,7 @@ void load_user_interation_val()
 	int user_id = 0;
 	int itr_num_user, item_id;
 	// printf("loading user interaction\n");
-	if ((fp = fopen("./data/Ciao/train_list.txt", "r")) != NULL)                                //*
+	if ((fp = fopen("./data/Amazon-Health/train_list.txt", "r")) != NULL)                                //*
 	{
 		while (!feof(fp))
 		{
@@ -237,7 +235,7 @@ void load_user_interation_test()
 	int user_id = 0;
 	int itr_num_user, item_id;
 	// printf("loading user interaction\n");
-	if ((fp = fopen("./data/Ciao/train_list_t.txt", "r")) != NULL)                         //*
+	if ((fp = fopen("./data/Amazon-Health/train_list_t.txt", "r")) != NULL)                         //*
 	{
 		while (!feof(fp))
 		{
@@ -299,9 +297,11 @@ py::array_t<double> negtive_sample(py::array_t<double>& user, py::array_t<double
 	return neg_items;
 }
 
-PYBIND11_MODULE(pybind_ciao, m) {
+PYBIND11_MODULE(pybind_amazon_health, m) {
 
 	m.doc() = "pybind11 example module";
+
+	// Add bindings here
 
 	m.def("load_popularity", &load_popularity);
 
